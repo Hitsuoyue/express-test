@@ -3,13 +3,22 @@ let router = express.Router();
 let app = express();
 let mysql      = require('mysql');
 
+// let connection = mysql.createConnection({
+//     host:'localhost',
+//     port:3306,
+//     user:'root',
+//     password:'123456789sy',
+//     database:'news'
+// });
+
 let connection = mysql.createConnection({
     host:'localhost',
     port:3306,
     user:'root',
-    password:'123456789sy',
+    password:'admin',
     database:'news'
 });
+
 // connection.connect();
 
 /* GET home page. */
@@ -18,6 +27,7 @@ let connection = mysql.createConnection({
 //     res.json(req.body);
 // })
 router.get('/', function(req, res, next) {
+    // let sql = 'CREATE TABLE news(id int,type varchar(255),title varchar(255),image varchar(255),time date,src varchar(255))'; //创建表
     let sql = 'SELECT * FROM news';
     connection.query(sql, function (error, results, fields) {
         if (error) {
